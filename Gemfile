@@ -55,6 +55,7 @@ gem 'devise'
 gem "figaro"
 gem 'faker'
 gem 'carrierwave'
+gem 'cloudinary'
 # gem "mini_magick"
 # gem 'fog'
 gem 'kaminari'
