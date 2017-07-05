@@ -4,10 +4,5 @@ class MainsController < ApplicationController
 	def index
 	end
 
-	private
-
-	def redirect_to_dashboard
-		redirect_to '/dashboard' if !request.subdomain.blank?
-	end
 end
 

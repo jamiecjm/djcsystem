@@ -2,14 +2,14 @@ require 'subdomain'
 
 Rails.application.routes.draw do
 
-    root 'mains#index'
-
-    resources :websites
-
-    devise_for :users, :controllers => { registrations: 'registrations', passwords: 'passwords' }
-    resources :users, except: [:show]
-
       constraints(Subdomain) do
+
+        root 'mains#index'
+
+        resources :websites
+
+        devise_for :users, :controllers => { registrations: 'registrations', passwords: 'passwords' }
+        resources :users, except: [:show]
 
         mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
         resources :teams

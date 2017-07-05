@@ -1,4 +1,5 @@
 class WebsitesController < ApplicationController
+	before_action :redirect_to_dashboard
 
 	def new
 		@website = Website.new
@@ -22,4 +23,6 @@ class WebsitesController < ApplicationController
 	def website_params
 		params.require(:website).permit(:superteam_name, :subdomain, :logo)
 	end
+
+	
 end

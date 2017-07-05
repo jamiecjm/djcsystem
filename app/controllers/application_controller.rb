@@ -103,5 +103,7 @@ class ApplicationController < ActionController::Base
     session[:path] = request.fullpath
   end
 
-
+  def redirect_to_dashboard
+    redirect_to '/dashboard' if subdomain != "www"
+  end
 end
