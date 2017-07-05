@@ -81,6 +81,6 @@ test:
 production:
   <<: *default
   # database: legacy_production
-  url: <%= ENV['HEROKU_POSTGRESQL_ONYX_URL'] %>
+  url: <%= ENV['HEROKU_POSTGRESQL_SILVER_URL'] %>
 #   username: eliteone
 #   password: <%= ENV['ELITEONE_DATABASE_PASSWORD'] %>

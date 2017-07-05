@@ -55,8 +55,8 @@ gem 'devise'
 gem "figaro"
 gem 'faker'
 gem 'carrierwave'
-gem "mini_magick"
-gem 'fog'
+# gem "mini_magick"
+# gem 'fog'
 gem 'kaminari'
 gem 'jquery-ui-rails'
 gem "letter_opener", :group => :development
