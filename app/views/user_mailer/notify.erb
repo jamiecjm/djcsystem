@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <p>Your registration for an Eliteone Sales System account has been approved!</p><br>
+    Your profile is as follow:<br><br>
+    Full name: <%=@user.name%><br>
+    Prefered name: <%=@user.prefered_name%><br>
+    Referral: <%=@user.parent.prefered_name if @user.parent != nil%><br>
+    Leader: <%=@user.leader.prefered_name if @user.leader != nil%><br>
+    Location: <%=@user.location%><br>
+    Mobile number: <%=@user.phone_no%><br>
+    Email: <%=@user.email%><br>
+    Date of birth: <%=@user.birthday%><br><br>
+    <%=link_to "Login", root_url%> with your <strong>prefered name</strong> and <strong>password</strong>.
+    <p></p>
+    Eliteone Sales System
+  </body>
+</html>

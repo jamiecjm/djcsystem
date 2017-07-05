@@ -1,0 +1,116 @@
+
+<div class="member">
+	<div class="col-lg-12">
+		<h1 class="page-header">Team Sales Summary</h1>
+		<div class="col-md-4">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+			 		<%=form_tag '/teams_sales_summary' do%>
+			 			<h4>Filter</h4>
+			 			<hr/>
+			 			<div class="form-inline form-group">
+			 				<%=label_tag "Month:"%>
+			                <%=select_tag :month, options_for_select(month),{class: "form-control", :prompt => "Select"} %>
+			            </div>
+			            <div class="form-inline form-group">
+			                <%=label_tag :or%>
+			            </div>
+			            <div class="form-inline form-group">
+				 			<%=label_tag "Date:"%>
+				 			<%=date_field_tag :date1,@from, class: "form-control datepicker"%>
+				 			<%=label_tag :to, "to"%>
+				 			<%=date_field_tag :date2,@to, class: "form-control datepicker"%>
+			 			</div>
+			 			<div class="form-inline form-group">
+				 			<%=label_tag "Location:"%>
+				 			<%=select_tag :location, options_for_select(User.locations.to_a, :selected => User.locations[@location]),{class: 'form-control',:prompt => "All"}%>
+			 			</div>
+			 			<div class="form-inline form-group">
+			 				<%=submit_tag "Go", class: "btn btn-default"%>
+			 			</div>
+			 		<%end%>
+			 		<hr/>
+					<div class="form-inline form-group">
+					    <select name="user_name" class="form-control" required onchange="location = this.value";>
+					  		<option value="#">View REN</option>
+							<%subtree_members.all.order("prefered_name").each do |user|%>
+							  <option value="/users/<%=user.id%>/sales"><%=user.prefered_name%></option>
+						 	<%end%>
+					 	</select>
+				 	</div>
+				 	<button id="btnExport" class="btn btn-default"">Export to xls</button>
+			 	</div>
+	 		</div>
+
+		</div>
+		<div class="col-md-8">
+			<table id="sum_value">
+				<tr>
+					<td>Date:</td>
+					<td><%="#{@from} to #{@to}"%></td>
+				</tr>
+				<tr>
+					<td>Location:</td>
+					<td><%=@location%></td>
+				</tr>
+				<tr>
+					<td>Team SPA:</td> 
+					<td>RM <span class="digit"><%=number_with_delimiter('%.2f' % @spa.sum)%></span></td>
+				</tr>
+
+				<tr>
+					<td>Team Nett Value:</td> 
+					<td>RM <span class="digit"><%=number_with_delimiter('%.2f' % @nett_value.sum)%></span></td>
+				</tr>
+
+				<tr>
+					<td>Team Commision:</td>
+					<td>RM <span class="digit"><%=number_with_delimiter('%.2f' % @comm.sum)%></span></td>
+				</tr>
+				<tr>
+					<td>Team Total Sales:</td>
+					<td><%=@sales%></td>
+				</tr>
+			</table>
+
+			<p></p>
+
+
+
+			<table class="table-bordered table-hover" id="member_table">
+				<thead>
+					<th>No</th>
+					<th>Name</th>
+					<th>Total SPA (RM)</th>
+					<th>Total Net Value (RM)</th>
+					<th>Total Comm (RM)</th>
+					<th>Total Sales</th>
+				</thead>
+				<tbody>
+
+					<%@user.each_with_index do |user,index|%>
+						<tr class='clickable-row' data-href="/users/<%=user.id%>/sales">
+							<td><%=(@user.current_page-1)*25+index+1%></td>
+							<td><%=user.prefered_name%></td>
+							<td class="digit"><%=number_with_delimiter('%.2f' % @spa[(@user.current_page-1)*25+index])%></td>
+							<td class="digit"><%=number_with_delimiter('%.2f' % @nett_value[(@user.current_page-1)*25+index])%></td>
+							<td class="digit"><%=number_with_delimiter('%.2f' % @comm[(@user.current_page-1)*25+index])%></td>
+							<td><%=@total[(@user.current_page-1)*25+index]%></td>
+						</tr>
+
+					<%end%>
+				</tbody>
+			</table>
+			<%= paginate @user, :params => { :controller => 'teams', :action => 'members', _: nil, _method: nil, authenticity_token: nil, utf8: nil} %><br>
+			<%if @user.size != @user.total_count%>
+				<%if @location == "All"%>
+					<%=link_to "Display all in one page", request.fullpath+"?date1=#{@from}&date2=#{@to}&limit=#{@user.total_count}&page=#{nil}"%>
+				<%else%>
+					<%=link_to "Display all in one page", request.fullpath+"?date1=#{@from}&date2=#{@to}&location=#{@location}&limit=#{@user.total_count}&page=#{nil}"%>
+				<%end%>
+			<%end%>
+		</div>
+	</div>
+</div>
+

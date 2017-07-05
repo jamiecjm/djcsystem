@@ -1,0 +1,11 @@
+  <div class="col-xs-5 col-sm-5 col-md-5">
+    <%= sv_form.select :user_id,options_for_select(User.all.order("prefered_name").pluck(:prefered_name,:id),:selected => sv_form.object.user_id),{:prompt => "Select"},{class: "form-control",required: true} %>
+  </div>
+
+  <div class="col-xs-5 col-sm-5 col-md-5">
+   <%= sv_form.number_field :percentage, class: "form-control",min: "0",max: "100",step: "any",required: true%>
+  </div>
+
+  <div class="col-xs-1 col-sm-1 col-md-1">
+  <%= sv_form.link_to_remove "-",class: "ren_remove btn btn-default" %>
+  </div>

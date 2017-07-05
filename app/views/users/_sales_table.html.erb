@@ -1,0 +1,47 @@
+<table class="table-bordered table-hover" id="sales_table">
+	<tbody>
+		<thead>
+			<th></th>
+			<th>ID</th>
+			<th>Date</th>
+			<th>Status</th>
+			<th>Project</th>
+			<th>Unit No.</th>
+			<th>Buyer</th>
+			<th>REN Sale Percentage (%)</th>
+			<th>REN SPA Value (RM)</th>
+			<th>REN Nett Value (RM)</th>
+			<th>REN Commision (RM)</th>
+			<th>Unit Size (sqft)</th>
+			<th>SPA Value (RM)</th>
+			<th>Nett Value (RM)</th>
+			<th>Project Comission (%)</th>
+			
+		</thead>
+		<%@salevalues.each do |sv|%>
+				<tr id ="/sales/<%=sv.sale.id%>/edit">
+				<td><div class="checkbox">
+					  <label><input type="checkbox" value="<%=sv.sale.id%>" name="tag_ids[]"></label>
+					</div>
+				</td>
+				<td><%=sv.sale.id%></td>
+				<td><%=sv.sale.date %></td>
+				<td><%=sv.sale.status%></td>
+				<td><%=sv.sale.project.name%></td>
+					<%unit=sv.sale.unit%>
+				<td><%=unit.unit_no%></td>
+				<td><%=sv.sale.buyer%></td>
+				<td><%=sv.percentage%></td>
+				<td class="digit"><%=number_with_delimiter('%.2f' %sv.spa)%></td>
+				<td class="digit"><%=number_with_delimiter('%.2f' %sv.nett_value)%></td>
+				<td class="digit"><%=number_with_delimiter('%.2f' %sv.comm)%></td>
+				
+				<td class="digit"><%=number_with_delimiter(unit.size)%></td>
+				<td class="digit"><%=number_with_delimiter('%.2f' %unit.spa_price)%></td>
+				<td class="digit"><%=number_with_delimiter('%.2f' %unit.nett_price)%></td>
+				<td><%=unit.comm_percentage%></td>
+				
+			</tr>
+		<%end%>
+	</tbody>
+</table>

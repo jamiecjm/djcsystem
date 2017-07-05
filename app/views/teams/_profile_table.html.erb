@@ -1,0 +1,31 @@
+<table class="table-bordered table-export" id="request-table">
+<thead>
+<th>No</th>
+<th>Full Name</th>
+<th>Prefered Name</th>
+<th>Referral</th>
+<th>Leader</th>
+<th>Location</th>
+<th>Mobile No</th>
+<th>Email</th>
+<th>Date of birth</th>
+<th>Created At</th>
+</thead>
+<tbody>
+<%@paginated_user.each_with_index do |user,index|%>
+<tr class='clickable-row' data-href="/users/<%=user.id%>/edit">
+<td><%=(@paginated_user.current_page-1)*25+index+1%></td>
+<td><%=user.name%></td>
+<td><%=user.prefered_name%></td>
+<td><%=user.parent.prefered_name if user.parent != nil%></td>
+<td><%=user.leader.prefered_name if user.team_id != nil%></td>
+<td><%=user.location%></td>
+<td><%=user.phone_no%></td>
+<td><%=user.email%></td>
+<td><%=user.birthday%></td>
+<td><%=user.created_at.to_date%></td>
+</tr>
+<%end%>
+</tbody>
+</table>
+

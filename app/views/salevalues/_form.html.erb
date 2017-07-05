@@ -1,0 +1,17 @@
+<%= form_for(salevalue) do |f| %>
+  <% if salevalue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(salevalue.errors.count, "error") %> prohibited this salevalue from being saved:</h2>
+
+      <ul>
+      <% salevalue.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

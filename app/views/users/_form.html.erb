@@ -1,0 +1,53 @@
+
+
+<div class="form-group">
+  <%= form.label :full_name, "Full name (as per NRIC)" %>
+  <%= form.text_field :name,class: "form-control",placeholder: "eg. Chong Keat Wei" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :prefered_name, "Prefered name (With Surname)" %>
+  <%= form.text_field :prefered_name,class: "form-control",placeholder: "eg. Dave Chong",required: true %>
+</div>
+
+<div class="form-group">
+  <%= form.label :mobile_number %>
+  <%= form.text_field :phone_no,class: "form-control",placeholder: "eg. 012-12345678" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :email %>
+  <%= form.text_field :email, type: 'email',class: "form-control",required: true %>
+</div>
+
+<div class="form-group">
+  <%= form.label :date_of_birth %>
+  <%= form.date_field :birthday,class: "form-control datepicker",placeholder: 'yyyy-mm-dd' %>
+</div>
+
+<%if signed_in?%>
+  <%if current_user.root == current_user%>
+    <div class="form-group">
+      <%= form.label :referral %>
+      <%= form.select :parent_id, options_for_select(User.approved.pluck(:prefered_name,:id).sort,:selected => @user.parent_id),{:prompt => "Select Referral"},{class: "form-control"} %>
+    </div>
+  <%else%>
+    <div class="form-group">
+      <%= form.label :referral %>
+      <%= form.select :parent_id, options_for_select(User.approved.pluck(:prefered_name,:id).sort,:selected => @user.parent_id),{:prompt => "Select Referral"},{class: "form-control",required: true} %>
+    </div>
+  <%end%>
+<%else%>
+  <div class="form-group">
+    <%= form.label :referral %>
+    <%= form.select :parent_id, options_for_select(User.approved.pluck(:prefered_name,:id).sort,:selected => @user.parent_id),{:prompt => "Select Referral"},{class: "form-control",required: true} %>
+  </div>
+<%end%>
+
+
+<div class="form-group">
+  <%= form.label :location %>
+  <%= form.select :location, options_for_select(User.locations.keys.to_a,:selected => @user.location),{:prompt => "Select a Location"},{class: "form-control",required: true} %>
+</div>
+
+

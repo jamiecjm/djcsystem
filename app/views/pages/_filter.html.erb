@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+ 		<%=form_tag request.fullpath.split("?").first do%>
+            <div class="form-inline form-group">
+	 			<%=label_tag "Date:"%>
+	 			<%=date_field_tag :date1,@from, class: "form-control datepicker"%>
+	 			<%=label_tag :to, "to"%>
+	 			<%=date_field_tag :date2,@to, class: "form-control datepicker"%>
+
+ 				<%=submit_tag "Go", class: "btn btn-default"%>
+ 			</div>
+ 		<%end%>
+  		<hr/>
+ 		<button id="btnExport" class="btn btn-default">Export to xls</button>
+ 	</div>
+</div>

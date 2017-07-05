@@ -1,0 +1,85 @@
+
+<div class="form-group">
+  <%= form.label :date %>
+  <%= form.date_field :date,class: "form-control datepicker", required: true,placeholder: "yyyy-mm-dd"%>
+</div>
+
+<div class="form-group">
+<label>Eliteone REN</label>
+</div>
+<div class="row">
+  <div class="col-xs-5 col-sm-5 col-md-5">
+    <%= form.label :ren, "Name"%>
+  </div>
+
+  <div class="col-xs-5 col-sm-5 col-md-5">
+   <%= form.label 'Percentage(%)' %>
+  </div>
+</div>
+
+<div class="row form-group">
+<%= form.fields_for :salevalues,Salevalue.new do |sv_form| %>
+
+<%=render "salevalue", sv_form: sv_form %>
+
+<% end %>
+
+<%= form.link_to_add "+", :salevalues,class: "btn btn-default",style: "margin-left: 1px;" %>
+</div>
+
+
+<div class="form-group">
+<label>Other REN</label>
+</div>
+
+<div class="non-member row form-group" >
+<%= form.fields_for :salevalues2,Salevalue.new do |sv2_form| %>
+
+<%=render "salevalue2", sv2_form: sv2_form %>
+
+<% end %>
+
+<%= form.link_to_add "+", :salevalues2,class: "btn btn-default",style: "margin-left: 1px;" %>
+</div>
+
+
+
+
+
+
+<div class="form-group">
+  <%= form.label :project%>
+  <%= form.select :project_id, options_for_select(Project.all.order("name").pluck(:name,:id),:selected => @sale.project_id),{prompt: "Select Project"},{class: "form-control"}%>
+</div>
+
+
+
+
+<%= form.fields_for :unit,Unit.new do |unit_form| %>
+
+<%=render "unit", unit_form: unit_form%>
+
+<% end %>
+
+
+
+
+
+<div class="form-group">
+  <%= form.label :buyer%>
+  <%= form.text_field :buyer,class: "form-control", required: true %>
+</div>
+
+<div class="form-group">
+  <%= form.label :package %>
+  <%= form.text_field :package,class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :remark %>
+  <%= form.text_area :remark,class: "form-control", rows: "5" %>
+</div>
+
+<%= form.hidden_field :status,value: "Booked" %>
+
+<%= form.submit :submit,class: "btn btn-default" %>

@@ -1,0 +1,19 @@
+<div class="form-group">
+  <%= unit_form.label :unit_no %>
+  <%= unit_form.text_field :unit_no,class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= unit_form.label :unit_size %>
+  <%= unit_form.number_field :size,class: "form-control",min: "0",step: "any" %>
+</div>
+
+<div class="form-group">
+  <%= unit_form.label :spa_value %>
+  <%= unit_form.number_field :spa_price,class: "form-control",min: "0",step: "any", required: true %>
+</div>
+
+<div class="form-group">
+  <%= unit_form.label :nett_value %>
+  <%= unit_form.number_field :nett_price,class: "form-control",min: "0",step: "any", required: true %>
+</div>

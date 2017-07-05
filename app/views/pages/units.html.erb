@@ -1,0 +1,42 @@
+
+
+
+
+
+<div class="col-lg-12">
+<h1 class="page-header">Other Units</h1>
+<p>These units don't belong to any sales</p>
+<table class="table-bordered" id="request-table">
+<thead>
+<th></th>
+<th>ID</th>
+<th>Unit No</th>
+<th>Unit Size</th>
+<th>Spa Value</th>
+<th>Nett Value</th>
+<th>Commision</th>
+<th>Project</th>
+</thead>
+<tbody>
+<%@units.each do |unit|%>
+<tr class='clickable-row' data-href="#" id ="#">
+<td>
+ 	<%=link_to "/units/#{unit.id}",method: :delete, data: {confirm: "Are you sure?"},'data-toggle': "tooltip", title: "Delete" do%>
+ 		<i class="glyphicon glyphicon-remove"></i>
+ 	<%end%>
+</td>
+<td><%=unit.id%></td>
+<td><%=unit.unit_no%></td>
+<td><%=unit.size%></td>
+<td><%=unit.spa_price%></td>
+<td><%=unit.nett_price%></td>
+<td><%=unit.comm%></td>
+<td><%=unit.project.name%></td>
+</tr>
+<%end%>
+</tbody>
+</table>
+
+</div>
+
+<%= paginate @units %>

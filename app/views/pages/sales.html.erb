@@ -1,0 +1,65 @@
+<div class="col-lg-12 team-sales">
+<h1 class="page-header">Other Sales</h1>
+<p>These records don't seem to appear anywhere</p>
+<table class="table-bordered table-fixed" id="sales_table">
+	<thead>
+		<th></th>
+		<th>ID</th>
+		<th>Date</th>
+		<th>Status</th>
+		<th>Project</th>
+		<th>Unit No.</th>
+		<th>Buyer</th>
+		<%@maxren.times do |t|%>
+			<th>REN <%=t+1%> (%)</th>
+		<%end%>
+		<th>Unit Size (sqft)</th>
+		<th>SPA Value (RM)</th>
+		<th>Nett Value (RM)</th>
+		<th>Comm Percentage (%)</th>
+		<th>Commision (RM)</th>
+
+		
+	</thead>
+	<tbody>
+
+		<%@sales.each do |sale|%>
+<!-- 			<tr class='clickable-row' data-href="/update/<%=sale.id%>"> -->
+			<tr id="/sales/<%=sale.id%>/edit">
+				<td>
+				 	<%=link_to "/sales/#{sale.id}",method: :delete, data: {confirm: "Are you sure?"},'data-toggle': "tooltip", title: "Delete" do%>
+				 		<i class="glyphicon glyphicon-remove"></i>
+				 	<%end%>
+				</td>
+				<td><%=sale.id%></td>
+				<td><%=sale.date%></td>
+				<td><%=sale.status%></td>
+				<%project=sale.project%>
+				<td><%=project.name%></td>
+				<%unit = sale.unit%>
+				<td><%=unit.unit_no%></td>
+				<td><%=sale.buyer%></td>
+				<%salevalues=sale.salevalues.reverse%>
+				<%(salevalues.length).times do |t|%>
+					<td><%=salevalues[t].user.prefered_name%><br>(<%=salevalues[t].percentage%>%)</td>
+				<%end%>
+				<%(@maxren-salevalues.length).times do |t|%>
+					<td>-</a></td>
+				<%end%>
+				
+				<td><%=number_with_delimiter(unit.size)%></td>
+				
+				<td><%=number_with_delimiter('%.2f' %unit.spa_price)%></td>
+				<td><%=number_with_delimiter('%.2f' %unit.nett_price)%></td>
+				<td><%=unit.comm_percentage%></td>
+				<td><%=number_with_delimiter('%.2f' %unit.comm)%></td>
+	
+			</tr>
+
+		<%end%>
+	</tbody>
+</table>
+
+</div>
+
+<%= paginate @sales %>

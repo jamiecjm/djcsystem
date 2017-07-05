@@ -1,0 +1,270 @@
+<div class="col-md-12">
+	<h1 class="page-header">Hello, <%=current_user.prefered_name%></h1>
+
+	<div class="col-xs-12 action-panel" id="row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+        	<%=link_to new_sale_path do%>
+	            <div class="panel panel-red">
+	                <div class="panel-heading">
+	                    <div class="row">
+	                    	<div class="text-center">
+		                        <i class="fa fa-plus fa-3x"></i>
+		                        <div>Enter New Sale</div>	
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+            <%end%>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+	        <%=link_to "/users/#{current_user.id}/sales" do%>
+	            <div class="panel panel-green">
+	                <div class="panel-heading">
+	                    <div class="row">
+	                    	<div class="text-center">
+		                        <i class="fa fa-user fa-3x"></i>
+		                        <div>Individual Sales</div>	
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        <%end%>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+	        <%=link_to "/teams/#{current_user.id}/sales" do%>
+	            <div class="panel panel-yellow">
+	                <div class="panel-heading">
+	                    <div class="row">
+	                    	<div class="text-center">
+		                        <i class="fa fa-group fa-3x"></i>
+		                        <div>Team Sales</div>	
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        <%end%>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+	        <%=link_to teams_sales_summary_path do%>
+	            <div class="panel panel-blue">
+	                <div class="panel-heading">
+	                    <div class="row">
+	                    	<div class="text-center">
+		                        <i class="fa fa-bar-chart fa-3x"></i>
+		                        <div>Team Sales Summary</div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        <%end%>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+	        <%=link_to "/teams/#{current_user.id}/profiles" do%>
+	            <div class="panel panel-darkblue">
+	                <div class="panel-heading">
+	                    <div class="row">
+	                    	<div class="text-center">
+		                        <i class="fa fa-address-book fa-3x"></i>
+		                        <div>Team Member Profiles</div>	
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        <%end%>
+        </div>
+        <%if current_user.leader?%>
+	        <div class="col-md-3 col-sm-3 col-xs-6">
+		        <%=link_to new_project_path do%>
+		            <div class="panel panel-blue">
+		                <div class="panel-heading">
+		                    <div class="row">
+		                    	<div class="text-center">
+			                        <i class="fa fa-plus-square fa-3x"></i>
+			                        <div>New Project</div>	
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        <%end%>
+	        </div>
+	        <div class="col-md-3 col-sm-3 col-xs-6">
+		        <%=link_to projects_path do%>
+		            <div class="panel panel-red">
+		                <div class="panel-heading">
+		                    <div class="row">
+		                    	<div class="text-center">
+			                        <i class="fa fa-cubes fa-3x"></i>
+			                        <div>Projects</div>	
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        <%end%>
+	        </div>
+	        <div class="col-md-3 col-sm-3 col-xs-6">
+		        <%=link_to requests_path do%>
+		            <div class="panel panel-green">
+		                <div class="panel-heading">
+		                    <div class="row">
+		                    	<div class="text-center">
+			                        <i class="fa fa-user-plus fa-3x"></i>
+			                        <div>Account Requests</div>	
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        <%end%>
+	        </div>
+        <%end%>
+    </div>
+
+
+    <div class="col-xs-12 col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Profile</div>
+			<div class="panel-body">
+				<div class="col-sm-4 col-sm-4 col-md-12">
+
+					
+
+				</div>
+
+				<div class="col-xs-12">
+					<h3><%=current_user.prefered_name%></h3>
+					<%=link_to "Edit profile", edit_user_path(current_user)%>
+					<table class="table table-hover">
+						<tbody>
+							<tr>
+								<td>Full Name </td>
+								<td><%=current_user.name%></td>
+							</tr>
+							<tr>
+								<td>Leader </td>
+								<td><%=current_user.leader.prefered_name%></td>
+							</tr>
+
+							<tr>
+								<td>Referral </td>
+								<td><%=current_user.parent.prefered_name if current_user.parent.present?%></td>
+							</tr>
+							<tr>
+								<td>Location </td>
+								<td><%=current_user.location%></td>
+							</tr>
+
+							<tr>
+								<td>E-mail </td>
+								<td><%=current_user.email%></td>
+							</tr>
+
+
+							<tr>
+								<td>Phone Number </td>
+								<td><%=current_user.phone_no%></td>
+							</tr>
+							<tr>
+								<td>Birthday </td>
+								<td><%=current_user.birthday%></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Campaign</div>
+			<div class="panel-body">
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Recent Activities</div>
+			<div class="panel-body">
+			</div>
+		</div>
+    </div>
+
+    <div class="col-xs-12 col-md-8">
+    	<div class="row">
+    		<div class="col-xs-12 col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">Your Sales Summary</div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<tr>
+								<td>Date</td><td><%="#{@individual_from} to #{@individual_to}"%></td>
+							</tr>
+							<tr>
+								<td>Total SPA value</td><td>RM <%=number_with_delimiter('%.2f' % @individual_spa)%></td>
+							</tr>
+							<tr>
+								<td>Total Nett value</td><td>RM <%=number_with_delimiter('%.2f' % @individual_nett_value)%></td>
+							</tr>
+							<tr>
+								<td>Total Commision</td><td>RM <%=number_with_delimiter('%.2f' % @individual_comm)%></td>
+							</tr>
+							<tr>
+								<td>Total sales</td> <td><%=@individual_total%></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">Team Sales Summary</div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<tr>
+								<td>Date</td><td><%="#{@team_from} to #{@team_to}"%></td>
+							</tr>
+							<tr>
+								<td>Total SPA Value</td> 
+								<td>RM <%=number_with_delimiter('%.2f' % @team_spa)%></td>
+							</tr>
+							<tr>
+								<td>Total Nett Value</td> 
+								<td>RM <%=number_with_delimiter('%.2f' % @team_nett_value)%></td>
+							</tr>
+							<tr>
+								<td>Total Commision</td> 
+								<td>RM <%=number_with_delimiter('%.2f' % @team_comm)%></td>
+							</tr>
+							<tr>
+								<td>Total Sales</td> 
+								<td><%= @team_total%></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>  
+			<div class="col-xs-12 col-md-8"> 
+				<div class="panel panel-default">
+					<div class="panel-heading">Your Monthly Sales Figure</div>
+					<div class="panel-body">
+					</div>
+				</div>	
+				<div class="panel panel-default">
+					<div class="panel-heading">Team Monthly Sales Figure</div>
+					<div class="panel-body">
+					</div>
+
+				</div>	
+			</div>
+    	</div>
+
+    	<div class="row">
+    		<div class="col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Team Sales Figure</div>
+					<div class="panel-body">
+					  <div>
+					    <div id="chart_div" class="col-sm-12 col-md-12 col-lg-12"></div>
+					  </div>
+					  <%=render 'charts/barchart_script'%>
+					</div>
+
+				</div>
+			</div>
+		</div>
+    </div>
+
+</div>
+

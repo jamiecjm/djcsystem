@@ -1,0 +1,20 @@
+<div class="collapse navbar-collapse" id="myNavbar">
+  <ul class="nav navbar-nav">
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sale
+      <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="/sales/new">New</a></li>
+        <li><a href="/users/<%=current_user.id%>/sales">Individual</a></li>
+      </ul>
+    </li>
+    <%if !session[:id].nil?%>
+      <li><%=form_tag '/change_user', class: "navbar-form" do%>
+        <%=select_tag :user, options_for_select(user_subtree.order('prefered_name').pluck(:prefered_name,:id)),{:prompt => "View as",class: "form-control"}%>
+        <%=submit_tag "Go",class: "btn btn-default"%>
+      <%end%>
+      </li>
+      <li><%=link_to "Viewing as #{current_user.prefered_name} (Revert)",'/revert_user', style: "color: yellow;"%></li>
+    <%end%>
+  </ul>
+

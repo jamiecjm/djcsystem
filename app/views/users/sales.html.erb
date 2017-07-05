@@ -1,0 +1,57 @@
+<div class="individual_sale col-lg-12">
+	<h1 class="page-header"><%=@user.prefered_name%>'s Sales</h1>
+
+		<div class="col-md-4">
+			<%=render "pages/filter"%>
+			
+		</div>
+
+	<form class="form-inline" action="/change_status" method="post">
+		<div class="col-md-8">
+			<table id="sum_value">
+				<tr>
+					<td>Date:</td><td><%="#{@from} to #{@to}"%></td>
+				</tr>
+				<tr>
+					<td>Total SPA value:</td><td>RM <%=number_with_delimiter('%.2f' % @spa)%></td>
+				</tr>
+				<tr>
+					<td>Total Nett value:</td><td>RM <%=number_with_delimiter('%.2f' % @nett_value)%></td>
+				</tr>
+				<tr>
+					<td>Total Commision:</td><td>RM <%=number_with_delimiter('%.2f' % @comm)%></td>
+				</tr>
+				<tr>
+					<td>Total sales:</td> <td><%=@total%></td>
+				</tr>
+			</table>
+			<p></p>
+
+			
+				<div class="form-group" style="margin-bottom: 10px;">
+					<select name="status" class="form-control" required>
+						<option value="">Action</option>
+					    <option value="Done">Mark as Done</option>
+					    <option value="Booked">Mark as Booked</option>
+					    <option value="Canceled">Mark as Canceled</option>
+					</select>
+				
+					<input type="submit" value="Apply" name="apply_button" class="btn btn-default">
+				</div>
+
+		</div>
+
+	<div class="search_sales">
+		<%= render 'sales_table'%>
+		<%= paginate @salevalues %><br>
+		<%if @salevalues.size != @salevalues.total_count%>
+			<%=link_to "Display all in one page", request.fullpath+"?date1=#{@from}&date2=#{@to}&limit=#{@salevalues.total_count}&page=#{nil}"%>
+		<%end%>
+
+	</div>
+
+
+	</form>
+
+
+</div>

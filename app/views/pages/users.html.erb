@@ -1,0 +1,31 @@
+<div class="col-lg-12">
+<h1 class="page-header">Other Members</h1>
+<p>These users don't belong to any team</p>
+<table class="table-bordered" id="member_table">
+<thead>
+<th></th>
+<th>ID</th>
+<th>Prefered Name</th>
+<th>Sales</th>
+</thead>
+<tbody>
+<%@users.each do |user|%>
+<tr>
+<td>
+	<%if user.sales == []%>
+	 	<%=link_to "/users/#{user.id}",method: :delete, data: {confirm: "Are you sure?"},'data-toggle': "tooltip", title: "Delete" do%>
+	 		<i class="glyphicon glyphicon-remove"></i>
+	 	<%end%>
+	<%end%>
+</td>
+<td><%=user.id%></td>
+<td><%=link_to "#{user.prefered_name}", edit_user_path(user)%></td>
+<td><%=link_to "#{user.sales.count}", "/users/#{user.id}/sales" %></td>
+</tr>
+<%end%>
+</tbody>
+</table>
+
+</div>
+
+<%= paginate @users %>

@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      <%if @title.present?%>
+        <%=@title%>
+      <%else%>
+        DJC Sales System
+      <%end%>
+    </title>
+    <%=favicon_link_tag "favicon.ico"%>
+    <script src="https://use.fontawesome.com/ebbfdb9b00.js"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tag %>
+    <!-- <meta name="viewport" content="width=device-width, user-scalable=false;"> -->
+  </head>
+  <body>
+  <!-- top navigation bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-toggleable-md">
+      <div class="container-fluid">
+        <div class="navbar-header"> 
+          <a class="navbar-brand" href="/"><%=website_name%></a>
+          <%if signed_in?%>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span> 
+            </button>
+        </div>
+          <%if leader?%>
+            <%=render "/layouts/leader_nav"%>
+          <%elsif !subdomain.blank?%>
+            <%=render "/layouts/normal_nav"%>
+          <%end%>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="glyphicon glyphicon-user"></span> <%=current_user.prefered_name%>
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/users/<%=current_user.id%>/edit">Edit Profile</a></li>
+                  <%if session[:id] == nil%>
+                    <li><%=link_to "Change Password",edit_user_registration_path %></li>
+                  <%end%>
+                </ul>
+              </li>
+              <li><%= link_to destroy_user_session_path, method: :delete do%>
+                <i class="glyphicon glyphicon glyphicon-log-out"></i> Logout
+                <%end%>
+              </li> 
+            </ul>
+          </div> 
+        <%else%>
+          </div>
+        <%end%>
+      </div>
+    </nav>
+  <!-- body content -->
+    <div class="wrapper">
+      <%flash%>
+      <% flash.each do |key, value| -%>
+        <%if key == "alert" || key == "notice"%>
+          <%key = "info"%>
+        <%elsif value == true%>
+          <%next%>
+        <%end%>
+        <div class="alert alert-<%=key%> alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <%=h value %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

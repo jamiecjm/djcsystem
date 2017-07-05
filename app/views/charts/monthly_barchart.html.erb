@@ -1,0 +1,56 @@
+<div class="col-sm-12 col-md-10 col-md-offset-1">
+
+  <div id="chart">
+    <%=image_tag website_logo, class: "img-responsive", style: "max-height: 80px", id: "logo" unless website_logo.nil?%>
+    <div id="chart_div" class="col-xs-12" style="min-height: 750px;"></div>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+  google.charts.load('current', {packages: ['corechart', 'bar']});
+  google.charts.setOnLoadCallback(drawAnnotations);
+
+  function drawAnnotations() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Month');
+    data.addColumn('number', 'Nett Value (RM)');
+    data.addColumn({type: 'number', role: 'annotation'});
+
+    data.addRows([
+     <%month[1..month.length-1].each_with_index do |month,index|%>
+      ["<%=month%>", <%=@nett_value[index].round%>, <%=@nett_value[index].round%>],
+     <%end%>
+    ]);
+
+    var options = {
+      title: 'Monthly Sales Figure  ~  Total Nett Value: RM <%=number_with_delimiter(@nett_value.sum.round(2))%>',
+      legend: {position: 'none'},
+      vAxis: { title: 'Nett Value (RM)',
+                format:'decimal',
+                textStyle: {
+                  fontSize: 15
+                }},
+      hAxis: {
+              textStyle: {
+                fontSize: 15
+              }},
+      annotations: {
+          alwaysOutside: true,
+          textStyle: {
+                  fontSize: 15
+                }}, 
+      chartArea: {'width': '80%','height': '80%'}
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+
+  $(window).resize(function(){
+    drawAnnotations();
+  });
+
+</script>

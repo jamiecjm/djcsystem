@@ -1,0 +1,366 @@
+@import "jquery-ui.min";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.action-panel a {
+  color: white;
+}
+
+/*panel color*/
+.panel-green {
+  color: white;
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+}
+
+.panel-yellow {
+  color: white;
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;
+}
+
+.panel-red {
+  color: white;
+  background-color: #d9534f;
+  border-color: #d9534f;
+}
+
+.panel-blue {
+  color: white;
+  background-color: #27a9e3;
+  border-color: #27a9e3;
+}
+
+.panel-darkblue {
+  color: white;
+  background-color: #2255a4;
+  border-color: #2255a4;
+}
+/**/
+
+/*flexbox*/
+#row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+/**/
+
+#sales_table tbody tr td:not(:first-child),
+#request-table td, 
+#member_table td {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 970px) and (max-width: 1190px) {
+
+  .navbar a{
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 13px
+  }
+
+  #myNavbar a{
+    padding-left: 6px;
+    padding-right: 6px; 
+  } 
+}
+
+@media (min-width: 768px) and (max-width: 970px) {
+    .navbar-header {
+        float: none;
+        display: block;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+
+    }
+    .navbar-collapse:before, .navbar-collapse:after {
+        content: " ";
+        display: table;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+    }
+    .collapse.in{
+        display:block !important;
+    }
+   .navbar-nav .open .dropdown-menu {
+       position: static;
+       float: none;
+       width: auto;
+       margin-top: 0;
+       background-color: transparent;
+       border: 0;
+       -webkit-box-shadow: none;
+       box-shadow: none;
+       
+    }
+    .navbar-collapse.in {
+        overflow-y: auto!important;
+    }
+    .dropdown-menu > li > a {
+      color:#9d9d9d;
+    }
+    .dropdown-menu > li > a:hover {
+      background-color: #222;
+      color:white;
+    }
+}
+
+.sign-in {
+    position:inherit;
+    margin-top: 150px;
+}
+
+.alert {
+  position:fixed;
+  width:100%;
+  z-index: 999;
+  text-align: center;
+}
+
+.wrapper {
+    position:inherit;
+    margin: 80px 0px 0px 0px;
+    padding: 0px 0px;
+}
+
+@media screen and (min-width: 800px) {
+  .wrapper {
+    margin: 70px 0 0 0px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+    .wrapper {
+      margin: 80px 0 0 0px;
+  }
+}
+
+
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+#request-table, #sales_table,#member_table {
+  background: #f5f5f5;
+  border-collapse: separate;
+  box-shadow: inset 0 1px 0 #fff;
+  font-size:15px;
+  text-align:center;
+} 
+
+#request-table, #sales_table{
+  min-width: 1816px;
+}
+
+#sum_value th,
+#request-table th,
+#sales_table th,
+#member_table th {
+  background: linear-gradient(#777, #444);
+  border-left: 1px solid #555;
+  border-right: 1px solid #777;
+  border-top: 1px solid #555;
+  border-bottom: 1px solid #333;
+  box-shadow: inset 0 1px 0 #999;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 15px;
+  position: relative;
+  text-shadow: 0 1px 0 #000; 
+  text-align: center;
+}
+
+#sum_value th:after,
+#request-table th:after,
+#sales_table th:after,
+#member_table th:after {
+  background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.08));
+  content: '';
+  display: block;
+  height: 25%;
+  left: 0;
+  margin: 1px 0 0 0;
+  position: absolute;
+  top: 25%;
+  width: 100%;
+}
+
+#sum_value th:first-child,
+#request-table th:first-child,
+#sales_table th:first-child,
+#member_table th:first-child {
+  border-left: 1px solid #777;  
+  box-shadow: inset 1px 1px 0 #999;
+}
+
+#sum_value th:last-child,
+#request-table th:last-child,
+#sales_table th:last-child,
+#member_table th:last-child{
+  box-shadow: inset -1px 1px 0 #999;
+}
+
+ 
+#sum_value td,
+#request-table td,
+#sales_table td,
+#member_table td{
+  border-right: 1px solid #fff;
+  border-left: 1px solid #e8e8e8;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 10px 15px;
+  position: relative;
+  transition: all 300ms;
+}
+
+ 
+#sum_value td:first-child,
+#request-table td:first-child,
+#sales_table td:first-child,
+#member_table td:first-child{
+  box-shadow: inset 1px 0 0 #fff;
+} 
+
+
+#sum_value td:last-child ,
+#request-table td:last-child ,
+#sales_table td:last-child ,
+#member_table td:last-child {
+  border-right: 1px solid #e8e8e8;
+  box-shadow: inset -1px 0 0 #fff;
+} 
+
+ 
+#sum_value tr:nth-child(odd) td,
+#request-table tr:nth-child(odd) td,
+#sales_table tr:nth-child(odd) td,
+#member_table tr:nth-child(odd) td{
+  background: #f1f1f1; 
+}
+
+ 
+#sum_value tr:last-of-type td,
+#request-table tr:last-of-type td,
+#sales_table tr:last-of-type td,
+#member_table tr:last-of-type td{
+  box-shadow: inset 0 -1px 0 #fff; 
+}
+
+ 
+#sum_value tr:last-of-type td:first-child,
+#request-table tr:last-of-type td:first-child,
+#sales_table tr:last-of-type td:first-child,
+#member_table tr:last-of-type td:first-child{
+  box-shadow: inset 1px -1px 0 #fff;
+} 
+
+ 
+#sum_value tr:last-of-type td:last-child,
+#request-table tr:last-of-type td:last-child,
+#sales_table tr:last-of-type td:last-child,
+#member_table tr:last-of-type td:last-child{
+  box-shadow: inset -1px -1px 0 #fff;
+}
+
+#sales_table td:nth-child(3),{
+  width: 130px;
+}
+
+#sales_table td:nth-child(5),
+.team-sales #sales_table td:nth-last-child(5){
+  width: 120px;
+}
+
+
+#sales_table td:nth-child(6){
+  width: 110px;  
+}
+
+.team-sales td:nth-last-child(2),
+#sales_table td:nth-last-child(2),
+#sales_table td:nth-last-child(5){
+  width: 100px;
+}
+
+.team-sales td:nth-child(7),
+#sales_table td:nth-child(7){
+  width:140px;
+}
+
+.team-sales #sales_table td:nth-child(8),
+.team-sales #sales_table td:nth-child(9),
+.team-sales #sales_table td:nth-child(10),
+.team-sales #sales_table td:nth-child(11),
+.team-sales #sales_table td:nth-child(12){
+  width:125px;
+}
+
+.individual_sale #sales_table td:nth-child(15),
+.individual_sale #sales_table td:nth-child(8),
+.team_sales td:nth-last-child(2){
+  width:20px;
+}
+
+#sum_value th,#sum_value td{
+  width:auto;
+}
+
+#sales_table tbody tr td {
+  height: 70px;
+}
+
+#chart {
+    border: 1px solid black;
+    background-color: white;
+    display: inline-block;
+    width:100%;
+}
+
+#chart_div {
+  max-width: 100%;  
+}
+
+
+#logo {
+    float:right;
+    margin: 1% 1%;
+}
+
+

@@ -1,0 +1,40 @@
+<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 well">
+<h1 class="page-header">Edit Project</h1>
+	<%if @project.sales == []%>
+		<%=link_to "Delete","/projects/#{@project.id}",method: :delete, data: {confirm: "Are you sure?"}%>
+	<%end%>
+	<p></p>
+	<%=nested_form_for @project do |form|%>
+		<div class="form-group">
+		  <%= form.label :name %>
+		  <%= form.text_field :name,class: "form-control" ,required: true%>
+		</div>
+
+		<div class="form-group">
+		<label>Commissions:</label>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-5 col-sm-5 col-md-5">
+			  <%= form.label :effective_date%>
+			</div>
+
+			<div class="col-xs-5 col-sm-5 col-md-5">
+			 <%= form.label 'Percentage(%)' %>
+			</div>
+		</div>
+
+		<div class="row form-group">
+		<%= form.fields_for :commissions do |f| %>
+
+			<%=render "commission", f: f %>
+
+		<% end %>
+
+		<%= form.link_to_add "+", :commissions,class: "btn btn-default",style: "margin-left: 1px;" %>
+		</div>
+
+		<%= form.submit :submit,class: "btn btn-default" %>
+	<%end%>
+
+</div>

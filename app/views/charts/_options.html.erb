@@ -1,0 +1,42 @@
+<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+  <div class="row ">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%=form_tag '/charts/barchart' do%>
+          <h4>Filter</h4>
+          <hr/>
+          <div class="form-inline form-group">
+            <%=label_tag "Month:"%>
+            <%=select_tag :month, options_for_select(month, :selected => @month),{class: "form-control", :prompt => "Select"} %>
+            &nbsp;
+            <%=label_tag :or%>
+            &nbsp;
+            <%=label_tag "Date:"%>
+            <%=date_field_tag :date1,@from, class: "form-control datepicker"%>
+            <%=label_tag :to, "to"%>
+            <%=date_field_tag :date2,@to, class: "form-control datepicker"%>
+          </div>
+          <div class="form-inline form-group">
+            <%=label_tag "Location:"%>
+            <%=select_tag :location, options_for_select(User.locations.to_a, :selected => User.locations[@location]),{class: 'form-control',:prompt => "All"}%>
+          </div>
+            <%=submit_tag "Go", class: "btn btn-default"%>
+          
+        <%end%>
+      </div>
+    </div>
+
+  
+    <%=button_tag "Save Image",id: "download", class: "btn btn-default",style: "float:right;" %>
+    <a href="" id="download_link" download></a>
+  
+  </div>
+
+  <br/>
+
+  <div id="chart">
+    <%=image_tag website_logo, class: "img-responsive", style: "max-height: 80px", id: "logo" unless website_logo.nil?%>
+    <div id="chart_div" class="col-sm-12 col-md-12 col-lg-12"></div>
+  </div>
+
+</div>

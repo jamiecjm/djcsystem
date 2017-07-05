@@ -1,0 +1,50 @@
+<div class="col-lg-12">
+<h1 class="page-header">New Requests</h1>
+
+
+<form class="form-inline" action="/request" method="post">
+<input name="token" value="current_user.confimation_token" type="hidden">
+<div class="form-group">
+<select name="status" class="form-control" required>
+	<option value="">Action</option>
+    <option value="true">Approve</option>
+    <option value="delete">Delete request</option>
+</select>
+</div>
+<input type="submit" value="Apply" name="apply_button" class="btn btn-default">
+
+<p></p>
+
+<table class="table-bordered" id="request-table">
+<thead>
+<th></th>
+<th>Full Name</th>
+<th>Prefered Name</th>
+<th>Referral</th>
+<th>Leader</th>
+<th>Location</th>
+<th>Mobile No</th>
+<th>Email</th>
+<th>Date of birth</th>
+</thead>
+<tbody>
+<%@users.each do |user|%>
+<tr id="/users/<%=user.id%>/edit">
+<td><div class="checkbox">
+	  <label><input type="checkbox" value="<%=user.id%>" name="tag_ids[]"></label>
+	</div>
+</td>
+<td><%=user.name%></td>
+<td><%=user.prefered_name%></td>
+<td><%=user.parent.prefered_name if user.parent != nil%></td>
+<td><%=user.leader.prefered_name if user.team_id != nil%></td>
+<td><%=user.location%></td>
+<td><%=user.phone_no%></td>
+<td><%=user.email%></td>
+<td><%=user.birthday%></td>
+</tr>
+<%end%>
+</tbody>
+</table>
+</form>
+</div>

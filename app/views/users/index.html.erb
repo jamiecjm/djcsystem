@@ -1,0 +1,26 @@
+
+<div class="col-lg-12">
+<h1 class="page-header">Contact</h1>
+<table class="table-bordered" id="request-table">
+<thead>
+<th>No</th>
+<th>Prefered Name</th>
+<th>Location</th>
+<th>Mobile No</th>
+<th>Email</th>
+</thead>
+<tbody>
+<%@users.each_with_index do |user,index|%>
+<tr class='clickable-row' data-href="/users/<%=user.id%>/edit">
+<td><%=index+1%></td>
+<td><%=user.prefered_name%></td>
+<td><%=user.location%></td>
+<td><%=user.phone_no%></td>
+<td><%=user.email%></td>
+</tr>
+<%end%>
+</tbody>
+</table>
+
+<%= paginate @users %>
+</div>

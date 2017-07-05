@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Date: <%=@sale.date%><br>
+    <%@sale.salevalues.reverse.each_with_index do |sv,index|%>
+    REN <%=index+1%>: <%=sv.user.prefered_name%> (<%=sv.percentage%>%)<br>
+    <%end%>
+    Project: <%=@sale.project.name%><br>
+    Unit No: <%=@sale.unit.unit_no%><br>
+    Size: <%=number_with_delimiter(@sale.unit.size)%> sqft<br>
+    Buyer: <%=@sale.buyer%><br>
+    SPA Price: RM <%=number_with_delimiter('%.2f' % @sale.unit.spa_price)%><br>
+    Nett Price: RM <%=number_with_delimiter('%.2f' % @sale.unit.nett_price)%><br>
+    Package: <%=@sale.package%><br>
+    Team: Eliteone<br><br>
+    <p>Congratulations on closing a sale. You can check your sales report via 
+    <%=link_to root_url, root_url %>
+    </p>
+    <br><br>
+    Dave Chong<br>
+    Eliteone
+  </body>
+</html>

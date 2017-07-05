@@ -1,0 +1,57 @@
+<table class="table-bordered table-fixed table-export" id="sales_table">
+	<thead>
+		<th></th>
+		<th>ID</th>
+		<th>Date</th>
+		<th>Status</th>
+		<th>Project</th>
+		<th>Unit No.</th>
+		<th>Buyer</th>
+		<%@maxren.times do |t|%>
+			<th>REN <%=t+1%> (%)</th>
+		<%end%>
+		<th>Unit Size (sqft)</th>
+		<th>SPA Value (RM)</th>
+		<th>Nett Value (RM)</th>
+		<th>Comm Percentage (%)</th>
+		<th>Commision (RM)</th>
+
+		
+	</thead>
+	<tbody>
+
+		<%@sales.each do |sale|%>
+<!-- 			<tr class='clickable-row' data-href="/update/<%=sale.id%>"> -->
+			<tr id="/sales/<%=sale.id%>/edit">
+				<td><div class="checkbox">
+					  <label><input type="checkbox" value="<%=sale.id%>" name="tag_ids[]"></label>
+					</div>
+				</td>
+				<td><%=sale.id%></td>
+				<td><%=sale.date%></td>
+				<td><%=sale.status%></td>
+				<%project=sale.project%>
+				<td><%=project.name%></td>
+				<%unit = sale.unit%>
+				<td><%=unit.unit_no%></td>
+				<td><%=sale.buyer%></td>
+				<%salevalues=sale.salevalues.reverse%>
+				<%(salevalues.length).times do |t|%>
+					<td><%=salevalues[t].user.prefered_name%><br>(<%=salevalues[t].percentage%>%)</td>
+				<%end%>
+				<%(@maxren-salevalues.length).times do |t|%>
+					<td>-</a></td>
+				<%end%>
+				
+				<td><%=number_with_delimiter(unit.size)%></td>
+				
+				<td><%=number_with_delimiter('%.2f' %unit.spa_price)%></td>
+				<td><%=number_with_delimiter('%.2f' %unit.nett_price)%></td>
+				<td><%=unit.comm_percentage%></td>
+				<td><%=number_with_delimiter('%.2f' %unit.comm)%></td>
+	
+			</tr>
+
+		<%end%>
+	</tbody>
+</table>
