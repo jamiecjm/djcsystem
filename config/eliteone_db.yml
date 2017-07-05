@@ -81,6 +81,6 @@ test:
 production:
   <<: *default
   # database: eliteone_production
-  url: <%= ENV['HEROKU_POSTGRESQL_RED_URL'] %>
+  url: <%= ENV['ELITEONE_DB_URL'] %>
 #   username: eliteone
 #   password: <%= ENV['ESSYSTEM_DATABASE_PASSWORD'] %>
