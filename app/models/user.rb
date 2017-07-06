@@ -92,6 +92,14 @@ class User < ApplicationRecord
     self.admin
   end
 
+  def subtree_members
+    if self.leader?
+      return self.team.sub_tree_members
+    else
+      return self.subtree
+    end
+  end
+
   private
 
   def titleize_name
