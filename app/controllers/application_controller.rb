@@ -104,6 +104,6 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_dashboard
-    redirect_to '/dashboard' if subdomain != "www"
+    redirect_to '/dashboard' if host != main_host
   end
 end

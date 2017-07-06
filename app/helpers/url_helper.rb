@@ -28,6 +28,14 @@ module UrlHelper
     end    
   end
 
+  def main_host
+    if Rails.env == "production"
+      "www.djcsystem.com"
+    else
+      "www.lvh.me"
+    end      
+  end
+
   # find current subdomain
   def current_website
     Website.revert_database
