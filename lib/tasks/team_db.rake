@@ -1,11 +1,13 @@
-task spec: ["eliteone:db:test:prepare"]
- 
-namespace :eliteone do
+task spec: ["team:db:test:prepare"]
+task :all => ["eliteone:db:drop", "legacy:db:drop"]
+
+namespace :team do
  
   namespace :db do |ns|
  
+
     task :drop do
-      Rake::Task["db:drop"].invoke
+      Rake::Task['eliteone:db:drop'].invoke && Rake::Task['legacy:db:drop'].invoke
     end
  
     task :create do
@@ -56,24 +58,4 @@ namespace :eliteone do
     end
   end
  
-  task :set_custom_config do
-    # save current vars
-    @original_config = {
-      env_schema: ENV['SCHEMA'],
-      config: Rails.application.config.dup
-    }
- 
-    # set config variables for custom database
-    ENV['SCHEMA'] = "team_db/schema.rb"
-    Rails.application.config.paths['db'] = ["team_db"]
-    Rails.application.config.paths['db/migrate'] = ["team_db/migrate"]
-    Rails.application.config.paths['db/seeds.rb'] = ["team_db/eliteone/eliteone_seeds.rb"]
-    Rails.application.config.paths['config/database'] = ["config/eliteone_db.yml"]
-  end
- 
-  task :revert_to_original_config do
-    # reset config variables to original values
-    ENV['SCHEMA'] = @original_config[:env_schema]
-    Rails.application.config = @original_config[:config]
-  end
 end

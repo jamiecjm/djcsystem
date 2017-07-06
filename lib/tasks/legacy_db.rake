@@ -64,10 +64,10 @@ namespace :legacy do
     }
  
     # set config variables for custom database
-    ENV['SCHEMA'] = "legacy_db/schema.rb"
-    Rails.application.config.paths['db'] = ["legacy_db"]
-    # Rails.application.config.paths['db/migrate'] = ["legacy_db/migrate"]
-    Rails.application.config.paths['db/seeds.rb'] = ["legacy_db/seeds.rb"]
+    ENV['SCHEMA'] = "team_db/schema.rb"
+    Rails.application.config.paths['db'] = ["team_db"]
+    Rails.application.config.paths['db/migrate'] = ["team_db/migrate"]
+    Rails.application.config.paths['db/seeds.rb'] = ["team_db/legacy/legacy_seeds.rb"]
     Rails.application.config.paths['config/database'] = ["config/legacy_db.yml"]
   end
  
