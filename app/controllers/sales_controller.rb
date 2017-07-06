@@ -16,7 +16,7 @@ class SalesController < ApplicationController
 	def create
 		@sale = Sale.new(new_sale_params)
 		if @sale.save
-			UserMailer.generate_report(current_user.email, @sale).deliver
+			UserMailer.generate_report(current_user.email, @sale, website_name).deliver
 			flash[:success] = "Sale record created"	
 			redirect_to "/"
 		else
@@ -62,7 +62,7 @@ class SalesController < ApplicationController
 			render "edit"
 		else
 			@sale.update(status: "Done")
-			UserMailer.email_admin(@sale,current_user).deliver
+			UserMailer.email_admin(@sale,current_user,website_name).deliver
 			flash[:success] = "Email has been delivered"
 			redirect_to "/sales/#{@sale.id}/edit"
 		end

@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 	def create
 		user = User.new(user_signup_params)
 		if user.save
-			UserMailer.approve_registration(user,request.host_with_port).deliver
+			UserMailer.approve_registration(user, website_name).deliver
 			flash[:success] = "Successfully registered. You will receive an confirmation email when your request has been approved."
 			redirect_to root_path
 		else
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 			users = User.where('id' => params[:tag_ids])
 			users.update_all(approved?: true)
 			users.each do |user|
-				UserMailer.notify(user).deliver
+				UserMailer.notify(user,website_name).deliver
 			end
 			flash[:success] = "Account approved"
 		else

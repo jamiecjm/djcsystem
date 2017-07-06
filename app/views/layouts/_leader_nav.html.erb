@@ -44,7 +44,6 @@
           <li><a href="/pages/units">Units</a></li>
         </ul>
       </li>
-      <li><a href="/admin">Admin</a></li>
     <%end%>
     <li><%=form_tag '/change_user', class: "navbar-form" do%>
       <%=select_tag :user, options_for_select(user_subtree.order('prefered_name').pluck(:prefered_name,:id)),{:prompt => "View as",class: "form-control"}%>

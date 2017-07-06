@@ -8,7 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
 	    yield resource if block_given?
 	    if resource.persisted?
 	      if resource.active_for_authentication?
-	      	UserMailer.approve_registration(resource).deliver
+	      	UserMailer.approve_registration(resource, website_name).deliver
 	        set_flash_message! :notice, :signed_up
 	        sign_up(resource_name, resource)
 	        respond_with resource, location: after_sign_up_path_for(resource)
