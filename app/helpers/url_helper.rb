@@ -31,7 +31,12 @@ module UrlHelper
   # find current subdomain
   def current_website
     Website.revert_database
-    Website.find_by(subdomain: subdomain)
+    web = Website.find_by(external_host: host)
+    if web.nil?
+      Website.find_by(subdomain: subdomain)
+    else
+      web
+    end
   end
 
   def website_settings
