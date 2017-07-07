@@ -1,6 +1,6 @@
 require 'csv'
 ActiveRecord::Base.transaction do
-  csv = CSV.new(File.open('db/teams.csv'), :headers => true)
+  csv = CSV.new(File.open('team_db/eliteone/teams.csv'), :headers => true)
   csv.each do |row|
     team = Team.new
     row.each do |field, value|
@@ -9,7 +9,7 @@ ActiveRecord::Base.transaction do
     team.save(validate: false)
   end 
 
-  csv = CSV.new(File.open('db/units.csv'), :headers => true)
+  csv = CSV.new(File.open('team_db/eliteone/units.csv'), :headers => true)
   csv.each do |row|
     unit = Unit.new
     row.each do |field, value|
@@ -19,7 +19,7 @@ ActiveRecord::Base.transaction do
     unit.save(validate: false)
   end 
 
-  csv = CSV.new(File.open('db/salevalues.csv'), :headers => true)
+  csv = CSV.new(File.open('team_db/eliteone/salevalues.csv'), :headers => true)
   csv.each do |row|
     salevalue = Salevalue.new
     row.each do |field, value|
@@ -32,7 +32,7 @@ ActiveRecord::Base.transaction do
     salevalue.save(validate: false)
   end 
 
-  csv = CSV.new(File.open('db/projects.csv'), :headers => true)
+  csv = CSV.new(File.open('team_db/eliteone/projects.csv'), :headers => true)
   csv.each do |row|
     project = Project.new
     row.each do |field, value|
@@ -45,7 +45,7 @@ ActiveRecord::Base.transaction do
     project.save(validate: false)
   end 
 
-  csv = CSV.new(File.open('db/sales.csv'), :headers => true)
+  csv = CSV.new(File.open('team_db/eliteone/sales.csv'), :headers => true)
   csv.each do |row|
     sale = Sale.new
     row.each do |field, value|
@@ -68,7 +68,7 @@ ActiveRecord::Base.transaction do
 
 
 
-  csv = CSV.new(File.open('db/rens.csv'), :headers => true)
+  csv = CSV.new(File.open('team_db/eliteone/rens.csv'), :headers => true)
   csv.each do |row|
     user = User.new
     password = 0

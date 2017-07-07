@@ -1,0 +1,5 @@
+<ul>
+	<%Website.all.each do |web|%>
+		<li><%= link_to "#{web.superteam_name}", edit_website_path(web)%></li>
+	<%end%>
+</ul>

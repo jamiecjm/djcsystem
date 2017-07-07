@@ -64,10 +64,10 @@ namespace :eliteone do
     }
  
     # set config variables for custom database
-    ENV['SCHEMA'] = "team_db/schema.rb"
+    ENV['SCHEMA'] = "team_db/eliteone/schema.rb"
     Rails.application.config.paths['db'] = ["team_db"]
     Rails.application.config.paths['db/migrate'] = ["team_db/migrate"]
-    Rails.application.config.paths['db/seeds.rb'] = ["team_db/eliteone/eliteone_seeds.rb"]
+    Rails.application.config.paths['db/seeds.rb'] = ["team_db/eliteone/seeds.rb"]
     Rails.application.config.paths['config/database'] = ["config/eliteone_db.yml"]
   end
  

@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   def set_database
     web = current_website
     if web.nil?
-      # redirect_to root_url(:host => domain) 
+      redirect_to root_url(:subdomain => 'www') 
     else
       web.use_database
       session[:website_settings] = web

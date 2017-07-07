@@ -5,9 +5,8 @@ namespace :team do
  
   namespace :db do |ns|
  
-
     task :drop do
-      Rake::Task['eliteone:db:drop'].invoke && Rake::Task['legacy:db:drop'].invoke
+      Rake::Task['all'].execute
     end
  
     task :create do
@@ -51,11 +50,6 @@ namespace :team do
     end
  
     # append and prepend proper tasks to all the tasks defined here above
-    ns.tasks.each do |task|
-      task.enhance ["eliteone:set_custom_config"] do
-        Rake::Task["eliteone:revert_to_original_config"].invoke
-      end
-    end
   end
  
 end

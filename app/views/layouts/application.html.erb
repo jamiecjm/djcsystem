@@ -32,7 +32,7 @@
         </div>
           <%if leader?%>
             <%=render "/layouts/leader_nav"%>
-          <%elsif !subdomain.blank?%>
+          <%else%>
             <%=render "/layouts/normal_nav"%>
           <%end%>
             <ul class="nav navbar-nav navbar-right">

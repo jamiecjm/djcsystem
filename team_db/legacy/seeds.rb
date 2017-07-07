@@ -1,7 +1,7 @@
 ActiveRecord::Base.transaction do
   User.create(prefered_name: "Ashley Tan",email: "ashleytan.property@gmail.com", password:"legacy2017",approved?: true, team_id: 1)
   Team.create(leader_id: 1)
-  csv = CSV.new(File.open('legacy_db/registration.csv'), :headers => true)
+  csv = CSV.new(File.open('team_db/legacy/registration.csv'), :headers => true)
   csv.each do |row|
     user = User.new
     row.each do |field, value|
@@ -48,7 +48,7 @@ ActiveRecord::Base.transaction do
     user.update(approved?: true)
   end
 
-  csv = CSV.new(File.open('legacy_db/sales_report.csv'), :headers => true)
+  csv = CSV.new(File.open('team_db/legacy/sales_report.csv'), :headers => true)
   csv.each do |row|
     sale = Sale.new
     user = User.new

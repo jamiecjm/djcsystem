@@ -2,12 +2,13 @@ require 'subdomain'
 
 Rails.application.routes.draw do
 
-      constraints(Subdomain) do
-
+    constraints subdomain: 'www' do
         root 'mains#index'
+        resources :websites 
+        get '*path' => redirect('/')
+    end
 
-        resources :websites
-
+    constraints(Subdomain) do
         devise_for :users, :controllers => { registrations: 'registrations', passwords: 'passwords' }
         resources :users, except: [:show]
 
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
         resources :salevalues
         resources :sales
         resources :units
-        
+            
         get '/users/:user_id/sales' => "users#sales"
         post '/users/:user_id/sales' => "users#sales"
         get '/requests' => "users#requests"
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
         post '/change_user' => 'users#change_user'
         get '/revert_user' => 'users#revert_user'
 
-        get '/dashboard' => "pages#dashboard"
+        root "pages#dashboard"
         get '/pages/sales' => "pages#sales"
         get '/pages/units' => "pages#units"
         get '/pages/users' => "pages#users"
@@ -44,7 +45,7 @@ Rails.application.routes.draw do
         post '/teams_sales_summary' => "teams#members" 
         get '/teams/:team_id/profiles' => "teams#profiles"
 
-        
+            
         get '/charts/uptodate/barchart' => "charts#uptodate_barchart"
         get '/charts/monthly_barchart' => "charts#monthly_barchart"
         post '/charts/barchart' => "charts#barchart"
@@ -57,10 +58,10 @@ Rails.application.routes.draw do
         get '/search_team_sales' => 'searches#search_team_sales'
         post '/search_individual_sales' => 'searches#search_individual_sales'
         get '/search_individual_sales' => 'searches#search_individual_sales'
-      end
 
-    # redirect to root if no routes matches, must be at the last line
-    get '*path' => redirect('/')
+        get '*path' => redirect('/')
+    end
+    
 end
 
 # Session routes for Authenticatable (default)
