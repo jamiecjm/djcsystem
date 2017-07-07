@@ -32,7 +32,7 @@ module UrlHelper
     if Rails.env == "production"
       "www.djcsystem.com"
     else
-      "www.lvh.me"
+      "www.lvh.me:3000"
     end      
   end
 

@@ -2,11 +2,9 @@ require 'subdomain'
 
 Rails.application.routes.draw do
 
-    constraints subdomain: 'www' do
-        root 'mains#index'
-        resources :websites 
-        get '*path' => redirect('/')
-    end
+    root 'mains#index'
+    resources :websites 
+    
 
     constraints(Subdomain) do
         devise_for :users, :controllers => { registrations: 'registrations', passwords: 'passwords' }
@@ -27,7 +25,7 @@ Rails.application.routes.draw do
         post '/change_user' => 'users#change_user'
         get '/revert_user' => 'users#revert_user'
 
-        root "pages#dashboard"
+        get '/dashboard' => "pages#dashboard"
         get '/pages/sales' => "pages#sales"
         get '/pages/units' => "pages#units"
         get '/pages/users' => "pages#users"
@@ -61,6 +59,8 @@ Rails.application.routes.draw do
 
         get '*path' => redirect('/')
     end
+
+    get '*path' => redirect('/')
     
 end
 
