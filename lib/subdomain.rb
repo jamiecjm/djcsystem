@@ -1,5 +1,5 @@
 class Subdomain
   def self.matches?(request)
-    request.subdomain.present? && host != main_host
+    request.subdomain.present?
   end
 end
