@@ -1,0 +1,64 @@
+<div class="section" style="background-color: #323232;overflow:auto;margin-top: -30px;">
+	<div class="col-xs-10 col-xs-offset-1" style="color:white;padding:200px 0px;">
+		<div class="col-md-8" style="padding: 100px 0px;">
+			<p style="font-size: 60px;">DJC SYSTEM</p>
+			<br/>
+			<h2>A Sales & Team Management System for Real Estate Negotiators</h2>
+			<br/>
+			<h3><i><b style="color:orange">We</b> keep track of your records. 
+			<b style="color:orange">You</b> focus on closing more deals.</i></h3>
+			<br/>
+			<br/>
+			<%=button_tag "Take a tour",class: "btn btn-primary btn-lg", id: "scroll-to-features-btn"%>
+		</div>
+		<div class="col-md-4">
+			<h3 id="signup">Sign up now!</h3>
+			<hr/>
+			<br/>
+			<%=form_for Website.new do |f|%>
+				<%= render "websites/form", f:f%>
+				<div class="form-group" >
+					<%=f.submit "Sign up", class: "btn btn-default" %>
+				</div>
+			<%end%>
+		</div>
+	</div>
+</div>
+<div class="section" style="overflow:auto;padding: 100px 0px;">
+	<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" style="margin-bottom:100px;">
+		<h1 id="features" class="page-header"><b>Features</b></h1>
+		<div class="row" style="margin-bottom: 50px;">
+			<div class="col-xs-6">
+				<h3>Dashboard</h3>
+			</div>
+			<div class="col-xs-6" >
+				<%=image_tag "dashboard.png", style: "max-width: 100%"%>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 50px;">
+			<div class="col-xs-6">
+				<%=image_tag "monthly_chart.png", style: "max-width: 100%"%>
+			</div>
+			<div class="col-xs-6">
+				<h3>Sales Analytics</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6" >
+				<h3>Custom Domain</h3>
+			</div>
+			<div class="col-xs-6">
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center">
+		<h2>Don't let anything slows down your sales process. 
+		<%=button_tag "Sign Up Now!", class: "btn btn-primary btn-lg", id: "scroll-to-top-btn"%></h2>
+	</div>
+</div>
+<div class="section" style="background-color: #F3752C;overflow:auto;padding: 15px 0px;">
+	<div class="text-center">
+		<h3>Powered by DJC Venture</h3>
+	</div>
+</div>
+

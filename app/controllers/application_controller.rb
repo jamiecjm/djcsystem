@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   include LocalSubdomain
   include UrlHelper
 
+  require 'pg_tools'
+
   protected
 
   def configure_permitted_parameters
@@ -22,19 +24,18 @@ class ApplicationController < ActionController::Base
 
   # set database based on subdomain
   def set_database
-    web = current_website
+    web = find_website
     if web.nil?
-      redirect_to root_url(:subdomain => 'www') 
-    else
-      web.use_database
-      session[:website_settings] = web
-      session[:logo_url] = web.logo.url
+      PgTools.restore_default_search_path
+      redirect_to root_url(:subdomain => 'www')      
+    elsif web.subdomain == "www"
+      PgTools.restore_default_search_path
+      session[:current_website] = web
+    else web.present?
+      PgTools.set_search_path web.id
+      session[:current_website] = web
     end
   end
-
-  # def database_connected?
-  #   website_subdomain == subdomain
-  # end
 
   # Bonus - add view_path
   def set_paths

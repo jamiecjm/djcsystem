@@ -22,7 +22,13 @@
     <nav class="navbar navbar-inverse navbar-fixed-top navbar-toggleable-md">
       <div class="container-fluid">
         <div class="navbar-header"> 
-          <a class="navbar-brand" href="/"><%=website_name%></a>
+          <a class="navbar-brand" href="/">
+          <%if current_website.present?%>
+            <%=current_website.superteam_name%>
+          <%else%>
+            DJC System
+          <%end%>  
+          </a>
           <%if signed_in?%>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
               <span class="icon-bar"></span>

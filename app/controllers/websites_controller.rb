@@ -1,6 +1,7 @@
 class WebsitesController < ApplicationController
 	# before_action :redirect_to_dashboard
 	# before_action :login_required
+	
 
 	def index
 	end
@@ -28,5 +29,4 @@ class WebsitesController < ApplicationController
 		params.require(:website).permit(:superteam_name, :subdomain, :logo)
 	end
 
-	
 end

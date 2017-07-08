@@ -89,6 +89,18 @@ document.addEventListener("turbolinks:load",function(){
 
 	window.setTimeout(function() { $(".alert").alert('close'); }, 10000);
 
+
+	$("#scroll-to-features-btn").click(function() {
+	    $('html, body').animate({
+	        scrollTop: $("#features").offset().top-100
+	    }, 1500);
+	});
+
+	$("#scroll-to-top-btn").click(function() {
+	    $('html, body').animate({
+	        scrollTop: $("#signup").offset().top-100
+	    }, 500);
+	});
 })
 
 // function downloadURI(uri, name) {

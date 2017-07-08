@@ -1,4 +1,5 @@
 module UrlHelper
+
   def with_subdomain(subdomain)
     subdomain = (subdomain || "")
     subdomain += "." unless subdomain.empty?
@@ -17,7 +18,11 @@ module UrlHelper
   end
 
   def subdomain
-    request.subdomain
+    if request.subdomain == "www"
+      return
+    else
+      request.subdomain
+    end 
   end
 
   def host
@@ -36,36 +41,21 @@ module UrlHelper
     end      
   end
 
-  # find current subdomain
   def current_website
-    Website.revert_database
-    web = Website.find_by(external_host: host)
-    if web.nil?
-      Website.find_by(subdomain: subdomain)
+    session[:current_website]
+  end
+
+  def find_website
+    if host == main_host
+      Website.find_by(subdomain: "www")
     else
-      web
+      web = Website.where(external_host: host).or(Website.where(subdomain: subdomain))
+      if web.length > 1
+        Website.where(external_host: host)
+      else
+        web.first
+      end
     end
   end
-
-  def website_settings
-    session[:website_settings]
-  end
-
-  def website_name
-    website_settings["superteam_name"]
-  end
-
-  def website_logo
-    session[:logo_url]
-  end
-
-  def logo_thumb
-    session[:logo_thumb]
-  end
-
-  def website_subdomain
-    website_settings["subdomain"]
-  end
-
 
 end

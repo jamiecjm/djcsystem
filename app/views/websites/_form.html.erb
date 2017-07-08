@@ -1,15 +1,25 @@
 <div class="form-group" >
-	<%=f.label "Website Name"%>
-	<%=f.text_field :superteam_name, class: "form-control" %>
+	<%=f.label "Company Name"%>
+	<%=f.text_field :superteam_name, class: "form-control", placeholder: "E.g. Property & Investment Agency" %>
 </div>
+
 <div class="form-group" >
-	<%=f.label "Subdomain"%>
-	<%=f.text_field :subdomain, class: "form-control" %>
+	<%=f.label "Company email"%>
+	<%=f.email_field :email, class: "form-control" %>
 </div>
+
 <div class="form-group" >
-	<%=f.label "Logo" %>
+	<%=f.label "Choose your subdomain"%>
+	<%=f.text_field :subdomain, class: "form-control", placeholder: "E.g. Enter \"pia\" for pia.djcsystem.com" %>
+</div>
+
+<div class="form-group" >
+	<%=f.label "Upload your company logo" %>
 	<%=f.file_field :logo, class: "form-control" %>
 </div>
+
 <div class="form-group" >
-	<%=f.submit :update, class: "btn btn-default" %>
+	<%=f.label "Custom domain" %> &nbsp; < <%=link_to "Instructions", "#" %> >
+	<%=f.text_field :external_host, class: "form-control" %>
 </div>
+
