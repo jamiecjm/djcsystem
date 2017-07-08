@@ -11,8 +11,9 @@ class UserMailer < ApplicationMailer
 	  end
 	end
 
-  def notify(user)
+  def notify(user,website_name)
     @user = user
+    @team_name = website_name
     subject = "DJC Sales System: Account Registration Approved"
     mail( :to      => @user.email,
           :subject => subject) do |format|
