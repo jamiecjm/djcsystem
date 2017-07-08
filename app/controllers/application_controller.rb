@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   # set default_url options for mailing based on subdomain
   def set_mailer_host
     ActionMailer::Base.default_url_options[:host] = host
-    ActionMailer::Base.smtp_settings.update(user_name: ENV["#{website_subdomain}_email"],password: ENV["#{website_subdomain}_password"])
+    ActionMailer::Base.smtp_settings.update(user_name: ENV["#{current_website.subdomain}_email"],password: ENV["#{current_website.subdomain}_password"])
   end
 
   private
