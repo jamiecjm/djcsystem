@@ -45,6 +45,14 @@ module UrlHelper
     session[:current_website]
   end
 
+  def website_name
+    current_website.superteam_name
+  end
+
+  def website_logo
+    current_website.logo.url 
+  end
+
   def find_website
     if host == main_host
       Website.find_by(subdomain: "www")
