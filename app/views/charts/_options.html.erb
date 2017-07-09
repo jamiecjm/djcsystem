@@ -35,7 +35,7 @@
   <br/>
 
   <div id="chart">
-    <%=image_tag website_logo, class: "img-responsive", style: "max-height: 80px", id: "logo" unless website_logo.nil?%>
+    <%=cl_image_tag website_logo, :secure=>true, class: "img-responsive", style: "max-height: 80px", id: "logo" unless website_logo.nil?%>
     <div id="chart_div" class="col-sm-12 col-md-12 col-lg-12"></div>
   </div>
 

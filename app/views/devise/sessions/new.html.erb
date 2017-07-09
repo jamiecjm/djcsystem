@@ -1,6 +1,6 @@
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 sign-in">
 
-	<%=image_tag current_website.logo.url, class: "img-responsive", style: "margin: 0 auto;max-height: 250px;" unless current_website.nil?%>
+	<%=cl_image_tag website_logo, :secure=>true, class: "img-responsive", style: "margin: 0 auto;max-height: 250px;" unless current_website.nil?%>
 
 
 	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

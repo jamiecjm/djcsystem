@@ -1,7 +1,7 @@
 <div class="col-sm-12 col-md-10 col-md-offset-1">
 
   <div id="chart">
-    <%=image_tag website_logo, class: "img-responsive", style: "max-height: 80px", id: "logo" unless website_logo.nil?%>
+    <%=cl_image_tag website_logo, :secure=>true, class: "img-responsive", style: "max-height: 80px", id: "logo" unless website_logo.nil?%>
     <div id="chart_div" class="col-xs-12" style="min-height: 750px;"></div>
   </div>
 

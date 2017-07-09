@@ -4,6 +4,7 @@ development:
   api_secret: <%=ENV['CLOUDINARY_SECRET_KEY']%>
   enhance_image_tag: true
   static_image_support: false
+  secure: true
 
 production:
   cloud_name: <%=ENV['CLOUDINARY_CLOUD_NAME']%>
@@ -11,6 +12,7 @@ production:
   api_secret: <%=ENV['CLOUDINARY_SECRET_KEY']%>
   enhance_image_tag: true
   static_image_support: false
+  secure: true
 
 test:
   cloud_name: <%=ENV['CLOUDINARY_CLOUD_NAME']%>
@@ -18,3 +20,4 @@ test:
   api_secret: <%=ENV['CLOUDINARY_SECRET_KEY']%>
   enhance_image_tag: true
   static_image_support: false
+  secure: true

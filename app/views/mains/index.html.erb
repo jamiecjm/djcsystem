@@ -1,5 +1,5 @@
 <div class="section" style="background-color: #323232;overflow:auto;margin-top: -30px;">
-	<div id='nasa-particles' style="position:absolute;width:100%;height:100%;margin-top: -30px;"></div>
+	<div id='nasa-particles' style="position:absolute;width:100%;max-height:100%;margin-top: -30px;"></div>
 	<div class="col-xs-10 col-xs-offset-1" style="font-family: 'Monda', sans-serif;color:white;padding:200px 0px;position:relative;">
 		<div class="col-md-8" style="padding: 100px 0px;">
 			<p style="font-size: 60px;font-family: 'Permanent Marker', cursive;">DJC SYSTEM</p>
@@ -41,14 +41,40 @@
 				<%=image_tag "monthly_chart.png", style: "max-width: 100%"%>
 			</div>
 			<div class="col-xs-6">
+				<h3>Keep all your sales in one place</h3>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 50px;">
+			<div class="col-xs-6">
+				<h3>Sales Analytics</h3>
+			</div>
+			<div class="col-xs-6">
+				<%=image_tag "monthly_chart.png", style: "max-width: 100%"%>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 50px;">
+			<div class="col-xs-6">
+				<%=image_tag "monthly_chart.png", style: "max-width: 100%"%>
+			</div>
+			<div class="col-xs-6">
 				<h3>Sales Analytics</h3>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-6" >
-				<h3>Custom Domain</h3>
+		<div class="row" style="margin-bottom: 50px;">
+			<div class="col-xs-6">
+				<h3>Sales Analytics</h3>
 			</div>
 			<div class="col-xs-6">
+				<%=image_tag "monthly_chart.png", style: "max-width: 100%"%>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<%=image_tag "monthly_chart.png", style: "max-width: 100%"%>
+			</div>
+			<div class="col-xs-6" >
+				<h3>Custom Email Domain</h3>
 			</div>
 		</div>
 	</div>
@@ -63,3 +89,117 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+	var particles_options = {
+			  "particles": {
+			    "number": {
+			      "value": 6,
+			      "density": {
+			        "enable": true,
+			        "value_area": 800
+			      }
+			    },
+			    "color": {
+			      "value": "#1b1e34"
+			    },
+			    "shape": {
+			      "type": "polygon",
+			      "stroke": {
+			        "width": 0,
+			        "color": "#000"
+			      },
+			      "polygon": {
+			        "nb_sides": 6
+			      },
+			      "image": {
+			        "src": "img/github.svg",
+			        "width": 100,
+			        "height": 100
+			      }
+			    },
+			    "opacity": {
+			      "value": 0.3,
+			      "random": true,
+			      "anim": {
+			        "enable": false,
+			        "speed": 1,
+			        "opacity_min": 0.1,
+			        "sync": false
+			      }
+			    },
+			    "size": {
+			      "value": 160,
+			      "random": false,
+			      "anim": {
+			        "enable": true,
+			        "speed": 10,
+			        "size_min": 40,
+			        "sync": false
+			      }
+			    },
+			    "line_linked": {
+			      "enable": false,
+			      "distance": 200,
+			      "color": "#ffffff",
+			      "opacity": 1,
+			      "width": 2
+			    },
+			    "move": {
+			      "enable": true,
+			      "speed": 8,
+			      "direction": "none",
+			      "random": false,
+			      "straight": false,
+			      "out_mode": "out",
+			      "bounce": false,
+			      "attract": {
+			        "enable": false,
+			        "rotateX": 600,
+			        "rotateY": 1200
+			      }
+			    }
+			  },
+			  "interactivity": {
+			    "detect_on": "canvas",
+			    "events": {
+			      "onhover": {
+			        "enable": false,
+			        "mode": "grab"
+			      },
+			      "onclick": {
+			        "enable": false,
+			        "mode": "push"
+			      },
+			      "resize": true
+			    },
+			    "modes": {
+			      "grab": {
+			        "distance": 400,
+			        "line_linked": {
+			          "opacity": 1
+			        }
+			      },
+			      "bubble": {
+			        "distance": 400,
+			        "size": 40,
+			        "duration": 2,
+			        "opacity": 8,
+			        "speed": 3
+			      },
+			      "repulse": {
+			        "distance": 200,
+			        "duration": 0.4
+			      },
+			      "push": {
+			        "particles_nb": 4
+			      },
+			      "remove": {
+			        "particles_nb": 2
+			      }
+			    }
+			  },
+			  "retina_detect": true
+			}
+
+	particlesJS("nasa-particles", particles_options);
+</script>
