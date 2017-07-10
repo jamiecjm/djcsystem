@@ -88,9 +88,13 @@ class UsersController < ApplicationController
 	end
 
 	def change_user
-		session[:id] = current_user.id if session[:id] == nil
-		sign_in(User.find(params[:user]))
-		redirect_to session[:path]
+		if params[:user].nil?
+			redirect_to "/revert_user"
+		else
+			session[:id] = current_user.id if session[:id] == nil
+			sign_in(User.find(params[:user]))
+			redirect_to session[:path]
+		end
 	end
 
 	def revert_user
