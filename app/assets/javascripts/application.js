@@ -59,8 +59,10 @@ document.addEventListener("turbolinks:load",function(){
 	$('#download').click(function(){
 		html2canvas($('#chart'), {
 		  useCORS: true,
+		  letterRendering: true,
 		  onrendered: function(canvas) {
 		    var myImage = canvas.toDataURL("image/png")
+		    debugger
 		    $('#download_link').attr('href',myImage)
 		    document.getElementById('download_link').click();
 		  }
@@ -84,7 +86,7 @@ document.addEventListener("turbolinks:load",function(){
 	    var table_html = table_div.outerHTML.replace(/ /g, '%20');
 	    var a = document.createElement('a');
 	    a.href = data_type + ', ' + table_html;
-	    a.download = 'exported_table_' + Math.floor((Math.random() * 9999999) + 1000000) + '.xls';
+	    a.download = 'exported_table_' + Math.floor((Math.random() * 9999999) + 1000000) + '.xlsx';
 	    a.click();
 	  });
 
