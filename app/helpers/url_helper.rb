@@ -50,7 +50,7 @@ module UrlHelper
   end
 
   def website_logo
-    current_website.logo.url 
+    current_website.logo 
   end
 
   def find_website

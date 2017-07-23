@@ -58,6 +58,7 @@ document.addEventListener("turbolinks:load",function(){
 
 	$('#download').click(function(){
 		html2canvas($('#chart'), {
+		  useCORS: true,
 		  onrendered: function(canvas) {
 		    var myImage = canvas.toDataURL("image/png")
 		    $('#download_link').attr('href',myImage)
