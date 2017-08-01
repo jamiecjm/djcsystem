@@ -86,7 +86,7 @@ document.addEventListener("turbolinks:load",function(){
 	    var table_html = table_div.outerHTML.replace(/ /g, '%20');
 	    var a = document.createElement('a');
 	    a.href = data_type + ', ' + table_html;
-	    a.download = 'exported_table_' + Math.floor((Math.random() * 9999999) + 1000000) + '.xlsx';
+	    a.download = 'exported_table_' + Math.floor((Math.random() * 9999999) + 1000000) + '.xls';
 	    a.click();
 	  });
 
