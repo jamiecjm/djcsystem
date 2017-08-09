@@ -57,8 +57,8 @@ class SalesController < ApplicationController
 
 	def email
 		@sale = Sale.find(params[:sale])
-		if @sale.spa_sign_date == nil || @sale.la_date == nil
-			flash.now[:danger] = "SPA/LA Sign Date must not be empty. Make sure you have already updated the sale record."
+		if @sale.spa_sign_date == nil
+			flash.now[:danger] = "SPA Sign Date must not be empty. Make sure you have updated the sale record."
 			render "edit"
 		else
 			@sale.update(status: "Done")

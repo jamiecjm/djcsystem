@@ -19,6 +19,7 @@
     SPA Price: RM <%=number_with_delimiter('%.2f' % @sale.unit.spa_price)%><br>
     Nett Price: RM <%=number_with_delimiter('%.2f' % @sale.unit.nett_price)%><br>
     Package: <%=@sale.package%><br>
+    Remark: <%=@sale.remark%><br>
     Team: <%=@team_name%><br><br>
     <p>Congratulations on closing a sale. You can check your sales report via 
     <%=link_to root_url, root_url %>
