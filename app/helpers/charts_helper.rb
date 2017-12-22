@@ -11,11 +11,11 @@ module ChartsHelper
   	(["Up to Date","December #{y-1}"]<<(1..12).to_a.map {|n| Date::MONTHNAMES[n]+" #{y}"}).flatten
   end
 
-  def set_date_range(m,date1,date2,todate)
+  def set_date_range(m,date1,date2)
   	today = Date.today
   	year = today.year
   	range = {}
-	if m == "Up to Date" || todate
+	if m == "Up to Date"
 		if today < Date.civil(year,12,16)
 			y = year-1
 		else

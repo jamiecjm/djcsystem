@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
 	before_action :save_path, only: [:sales,:members,:profiles]
 
 	def sales
-		range = set_date_range(params[:month],params[:date1],params[:date2],true)
+		range = set_date_range(params[:month],params[:date1],params[:date2])
 		@from = range["from"]
 		@to = range["to"]
 		@sales = subtree_sales.where("sales.date >= ?",@from).where("sales.date <= ?",@to).order(date: :desc, id: :desc).distinct.page(params[:page]).per(params[:limit])
@@ -23,7 +23,7 @@ class TeamsController < ApplicationController
 	end
 
 	def members
-		range = set_date_range(params[:month],params[:date1],params[:date2],false)
+		range = set_date_range(params[:month],params[:date1],params[:date2])
 		@from = range["from"]
 		@to = range["to"]
 		if params[:location].blank? || params[:location] == nil

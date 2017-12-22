@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 	end
 
 	def sales
-		range = set_date_range(params[:month],params[:date1],params[:date2],true)
+		range = set_date_range(params[:month],params[:date1],params[:date2])
 		@from = range["from"]
 		@to = range["to"]
 		@user = User.find(params[:user_id])

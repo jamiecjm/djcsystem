@@ -19,7 +19,7 @@ class ChartsController < ApplicationController
 
 	def monthly_barchart
 		@months = month[1..month.length-1]
-		range = set_date_range(params[:month],params[:date1],params[:date2],true)
+		range = set_date_range(params[:month],params[:date1],params[:date2])
 		@from = range["from"]
 		@to = range["to"]
 		# if params[:location].blank?
@@ -39,7 +39,7 @@ class ChartsController < ApplicationController
 
 	def barchart
 		@title = "Sales Chart"
-		range = set_date_range(params[:month],params[:date1],params[:date2],false)
+		range = set_date_range(params[:month],params[:date1],params[:date2])
 		@from = range["from"]
 		@to = range["to"]
 		if params[:location].blank?
