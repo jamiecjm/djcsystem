@@ -49,7 +49,7 @@
     data.addColumn({type: 'number', role: 'annotation'});
 
     data.addRows([
-     <%month[1..month.length-1].each_with_index do |month,index|%>
+     <%month(@year)[1..month(@year).length-1].each_with_index do |month,index|%>
       ["<%=month%>", <%=@nett_value[index].round%>, <%=@nett_value[index].round%>],
      <%end%>
     ]);

@@ -18,7 +18,7 @@ class ChartsController < ApplicationController
 	end
 
 	def monthly_barchart
-		@months = month[1..month.length-1]
+		
 		if params[:year].nil?
 			if Date.today >= "#{Date.today.year}-12-15".to_date
 				params[:year] = Date.today.year + 1
@@ -27,6 +27,8 @@ class ChartsController < ApplicationController
 			end
 		end
 		@year = params[:year]
+		month = month(@year)
+		@months = month(@year)[1..month.length-1]
 		params[:date1] = "#{params[:year].to_i-1}-12-16".to_date
 		params[:date2] = "#{params[:year].to_i}-12-15".to_date
 		range = set_date_range(params[:month],params[:date1],params[:date2])

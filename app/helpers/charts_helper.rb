@@ -1,13 +1,8 @@
 module ChartsHelper
 
-  def month
+  def month(year)
   	today = Date.today
-  	year = today.year
-	if today < Date.civil(year,12,16)
-		y = year
-	else
-		y = year+1	
-	end	
+  	y = year.to_i
   	(["Up to Date","December #{y-1}"]<<(1..12).to_a.map {|n| Date::MONTHNAMES[n]+" #{y}"}).flatten
   end
 
