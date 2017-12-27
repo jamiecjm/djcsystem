@@ -7,7 +7,7 @@
           <hr/>
           <div class="form-inline form-group">
             <%=label_tag "Month:"%>
-            <%=select_tag :month, options_for_select(month, :selected => @month),{class: "form-control", :prompt => "Select"} %>
+            <%=select_tag :month, options_for_select(month(Date.today.year), :selected => @month),{class: "form-control", :prompt => "Select"} %>
             &nbsp;
             <%=label_tag :or%>
             &nbsp;
