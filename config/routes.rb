@@ -45,6 +45,7 @@ Rails.application.routes.draw do
 
             
         get '/charts/uptodate/barchart' => "charts#uptodate_barchart"
+        post '/charts/monthly_barchart' => "charts#monthly_barchart"
         get '/charts/monthly_barchart' => "charts#monthly_barchart"
         post '/charts/barchart' => "charts#barchart"
         get '/charts/barchart' => "charts#barchart"

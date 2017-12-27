@@ -62,7 +62,6 @@ document.addEventListener("turbolinks:load",function(){
 		  letterRendering: true,
 		  onrendered: function(canvas) {
 		    var myImage = canvas.toDataURL("image/png")
-		    debugger
 		    $('#download_link').attr('href',myImage)
 		    document.getElementById('download_link').click();
 		  }

@@ -19,18 +19,27 @@ class ChartsController < ApplicationController
 
 	def monthly_barchart
 		@months = month[1..month.length-1]
+		if params[:year].nil?
+			if Date.today >= "#{Date.today.year}-12-15".to_date
+				params[:year] = Date.today.year + 1
+			else
+				params[:year] = Date.today.year
+			end
+		end
+		@year = params[:year]
+		params[:date1] = "#{params[:year].to_i-1}-12-16".to_date
+		params[:date2] = "#{params[:year].to_i}-12-15".to_date
 		range = set_date_range(params[:month],params[:date1],params[:date2])
 		@from = range["from"]
 		@to = range["to"]
-		# if params[:location].blank?
-		# 	@location = "All Locations"
-		# 	@members=subtree_members.joins(:salevalues).joins("LEFT JOIN sales ON sale_id = sales.id").group(:id).where("sales.status != ?", 2)
-		# 	byebug
-		# else
-		# 	@location = User.locations.select{|key,value| value == params[:location].to_i}.keys.first
-		# 	@members=subtree_members.joins(:salevalues).joins("LEFT JOIN sales ON sale_id = sales.id").group(:id).where("sales.status != ?", 2).where(location: params[:location].to_i)
-		# end
-		@monthly_sales = subtree_members.joins(:salevalues).joins("LEFT JOIN sales ON sale_id = sales.id").where("sales.status != ?", 2).where("sales.date >= ?",@from).where("sales.date <= ?",@to).group("DATE_TRUNC('month', sales.date)").sum("salevalues.nett_value")
+		if params[:location].blank?
+			@location = "All Locations"
+			@members=subtree_members.joins(:salevalues).joins("LEFT JOIN sales ON sale_id = sales.id").where("sales.status != ?", 2)
+		else
+			@location = User.locations.select{|key,value| value == params[:location].to_i}.keys.first
+			@members=subtree_members.joins(:salevalues).joins("LEFT JOIN sales ON sale_id = sales.id").where("sales.status != ?", 2).where(location: params[:location].to_i)
+		end
+		@monthly_sales = @members.where("sales.date >= ?",@from).where("sales.date <= ?",@to).group("DATE_TRUNC('month', sales.date)").sum("salevalues.nett_value")
 		@months.each do |m| 
 			@monthly_sales[m.to_date] = 0 if !@monthly_sales.keys.map(&:to_date).include?(m.to_date)
 		end

@@ -1,4 +1,33 @@
+
 <div class="col-sm-12 col-md-10 col-md-offset-1">
+
+  <div class="row ">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%=form_tag '/charts/monthly_barchart' do%>
+          <h4>Filter</h4>
+          <hr/>
+          <div class="form-inline form-group">
+            <%=label_tag "Year:"%>
+            <%=select_tag :year, options_for_select((2017..Date.today.year+1).to_a, :selected => @year),{class: "form-control", :prompt => "Select"} %>
+          </div>
+          <div class="form-inline form-group">
+            <%=label_tag "Location:"%>
+            <%=select_tag :location, options_for_select(User.locations.to_a, :selected => User.locations[@location]),{class: 'form-control',:prompt => "All"}%>
+          </div>
+            <%=submit_tag "Go", class: "btn btn-default"%>
+          
+        <%end%>
+      </div>
+    </div>
+
+  
+    <%=button_tag "Save Image",id: "download", class: "btn btn-default",style: "float:right;" %>
+    <a href="" id="download_link" download></a>
+  
+  </div>
+
+  <br/>
 
   <div id="chart">
     <%=cl_image_tag website_logo, :secure=>true, class: "img-responsive", style: "max-height: 80px", id: "logo" unless website_logo.nil?%>
@@ -26,7 +55,7 @@
     ]);
 
     var options = {
-      title: 'Monthly Sales Figure  ~  Total Nett Value: RM <%=number_with_delimiter(@nett_value.sum.round(2))%>',
+      title: "<%=@year%> Monthly Sales Figure  ~  Total Nett Value: RM <%=number_with_delimiter(@nett_value.sum.round(2))%>",
       legend: {position: 'none'},
       vAxis: { title: 'Nett Value (RM)',
                 format:'decimal',
