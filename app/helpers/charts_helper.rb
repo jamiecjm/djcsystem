@@ -1,9 +1,10 @@
 module ChartsHelper
 
-  def month(year)
+  def month(year=nil)
+  	year ||= Date.today.year
   	today = Date.today
-  	y = year.to_i
-  	(["Up to Date","December #{y-1}"]<<(1..12).to_a.map {|n| Date::MONTHNAMES[n]+" #{y}"}).flatten
+  	year = year.to_i
+  	(["Up to Date","December #{year-1}"]<<(1..12).to_a.map {|n| Date::MONTHNAMES[n]+" #{year}"}).flatten
   end
 
   def set_date_range(m,date1,date2)
